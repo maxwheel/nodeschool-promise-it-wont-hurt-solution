@@ -15,12 +15,18 @@ var all = function(p1, p2){
     var insert = function(elem){
         res.push(elem);
     }
-    p1.then(insert).then(inc).then(complete).then(null, def3.reject);
-    p2.then(insert).then(inc).then(complete).then(null, def3.reject);
+    p1.then(insert).then(inc).then(complete).then(null, console.log);
+    p2.then(insert).then(inc).then(complete).then(null, console.log);
     return def3.promise;
 }
 
-all(def1.promise, def2.promise).then(console.log);
+//all(def1.promise, def2.promise).then(console.log);
+
+//q.all([def1.promise,def2.promise]).then(console.log);
+q.all([def1.promise,def2.promise])
+    .spread(function(res1,res2){
+            console.log([res1,res2]);
+                });
 
 setTimeout(function(){
         def1.resolve("PROMISES");
